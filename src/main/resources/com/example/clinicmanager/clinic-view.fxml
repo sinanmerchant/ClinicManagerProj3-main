@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.clinicmanager.ClinicManagerController">
+    <top>
+        <TabPane>
+            <Tab text="Schedule / Cancel">
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15"/>
+                    </padding>
+                    <GridPane hgap="10" vgap="10">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="30" />
+                            <ColumnConstraints percentWidth="40" />
+                            <ColumnConstraints percentWidth="30" />
+                        </columnConstraints>
+
+                        <!-- Schedule / Cancel Fields -->
+                        <Label text="Appointment Date:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <DatePicker fx:id="appointmentDate" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                        <Label text="Patient" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextField fx:id="firstName" promptText="First Name" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        <TextField fx:id="lastName" promptText="Last Name" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        <DatePicker fx:id="dateOfBirth" promptText="Date of Birth" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                        <HBox spacing="10" GridPane.rowIndex="4" GridPane.columnIndex="1">
+                            <RadioButton text="Office Visit" fx:id="officeVisit"/>
+                            <RadioButton text="Imaging Service" fx:id="imagingService"/>
+                        </HBox>
+
+                        <ComboBox fx:id="timeslotComboBox" promptText="Timeslot" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="providerOrRoom" promptText="Provider/Room" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                        <HBox spacing="10" GridPane.rowIndex="6" GridPane.columnIndex="1">
+                            <Button text="Schedule" fx:id="scheduleButton"/>
+                            <Button text="Cancel" fx:id="cancelButton"/>
+                            <Button text="Clear" fx:id="clearButton"/>
+                        </HBox>
+                    </GridPane>
+                </VBox>
+            </Tab>
+            <Tab text="Reschedule">
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15"/>
+                    </padding>
+                    <GridPane hgap="10" vgap="10">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="30" />
+                            <ColumnConstraints percentWidth="40" />
+                            <ColumnConstraints percentWidth="30" />
+                        </columnConstraints>
+
+                        <!-- Existing Appointment Information -->
+                        <Label text="First Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <TextField fx:id="rescheduleFirstName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                        <Label text="Last Name:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextField fx:id="rescheduleLastName" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        <Label text="Date of Birth:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <DatePicker fx:id="rescheduleDateOfBirth" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                        <Label text="Old Appointment Date:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                        <DatePicker fx:id="existingAppointmentDate" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                        <Label text="Old Timeslot:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="oldTimeslotComboBox" promptText="Old Timeslot" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                        <!-- New Appointment Details -->
+                        <Label text="New Appointment Date:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                        <DatePicker fx:id="newAppointmentDate" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                        <Label text="New Timeslot:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="newTimeslotComboBox" promptText="New Timeslot" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+                        <!-- Reschedule Button -->
+                        <HBox spacing="10" GridPane.rowIndex="7" GridPane.columnIndex="1">
+                            <Button text="Reschedule" fx:id="rescheduleButton"/>
+                            <Button text="Clear" fx:id="clearRescheduleButton"/>
+                        </HBox>
+                    </GridPane>
+                </VBox>
+            </Tab>
+            <Tab text="Print">
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15"/>
+                    </padding>
+                    <Label text="Print Options"/>
+
+                    <Button fx:id="printByDateButton" text="Print Appointments by Date"/>
+                    <Button fx:id="printByPatientButton" text="Print Appointments by Patient"/>
+                    <Button fx:id="printByLocationButton" text="Print Appointments by Location"/>
+                    <Button fx:id="printBillingStatementsButton" text="Print Billing Statements"/>
+                    <Button fx:id="printOfficeAppointmentsButton" text="Print Office Appointments by County"/>
+                    <Button fx:id="printImagingAppointmentsButton" text="Print Imaging Appointments by County"/>
+                    <Button fx:id="printProviderCreditsButton" text="Print Provider Credits"/>
+                </VBox>
+            </Tab>
+            <Tab text="Locations">
+                <VBox spacing="10">
+                    <Label text="Location List"/>
+                    <TableView fx:id="locationTable" prefHeight="200">
+                        <columns>
+                            <TableColumn fx:id="col_city" text="City"/>
+                            <TableColumn fx:id="col_county" text="County"/>
+                            <TableColumn fx:id="col_zip" text="Zip Code"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+        </TabPane>
+    </top>
+    <bottom>
+        <TextArea fx:id="outputArea" prefHeight="100" promptText="Output Area"/>
+    </bottom>
+</BorderPane>
